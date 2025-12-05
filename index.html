@@ -49,10 +49,9 @@
             filter: drop-shadow(0 10px 40px rgba(212, 175, 55, 0.4));
         }
         
-        .logo img {
+        .logo svg {
             width: 100%;
             height: 100%;
-            object-fit: contain;
         }
         
         h1 {
@@ -179,7 +178,29 @@
     <div class="container">
         <div class="logo-wrapper">
             <div class="logo">
-                <img src="https://imgur.com/8Z8L8jX.png" alt="CARTEL47 Logo" />
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer circle black background -->
+                    <circle cx="100" cy="100" r="95" fill="#1a1a1a" stroke="#d4af37" stroke-width="3"/>
+                    <!-- Gold gradient circle -->
+                    <defs>
+                        <radialGradient id="goldGradient" cx="30%" cy="30%">
+                            <stop offset="0%" style="stop-color:#f0d968;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#d4af37;stop-opacity:1" />
+                        </radialGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="90" fill="url(#goldGradient)" />
+                    <!-- Spade symbol at top -->
+                    <g transform="translate(100, 35)">
+                        <text x="0" y="0" font-size="45" font-weight="bold" fill="#1a1a1a" text-anchor="middle" dominant-baseline="middle">♠</text>
+                    </g>
+                    <!-- 47 number in center -->
+                    <text x="100" y="115" font-size="72" font-weight="bold" fill="#1a1a1a" text-anchor="middle" dominant-baseline="middle">47</text>
+                    <!-- Gold accent squares around the circle -->
+                    <rect x="15" y="50" width="20" height="20" fill="#d4af37" transform="rotate(45 25 60)"/>
+                    <rect x="15" y="130" width="20" height="20" fill="#d4af37" transform="rotate(45 25 140)"/>
+                    <rect x="165" y="50" width="20" height="20" fill="#d4af37" transform="rotate(45 175 60)"/>
+                    <rect x="165" y="130" width="20" height="20" fill="#d4af37" transform="rotate(45 175 140)"/>
+                </svg>
             </div>
         </div>
         
