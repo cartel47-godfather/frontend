@@ -40,41 +40,25 @@
         }
         
         .logo {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
-            background: radial-gradient(circle at 30% 30%, #f0d968, #d4af37);
-            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4), inset 0 2px 5px rgba(255,255,255,0.2);
-            font-size: 70px;
-            font-weight: bold;
-            color: #1a1a1a;
-            border: 3px solid #d4af37;
-            position: relative;
+            filter: drop-shadow(0 10px 40px rgba(212, 175, 55, 0.4));
         }
         
-        .logo::before {
-            content: '♠';
-            position: absolute;
-            top: -10px;
-            font-size: 40px;
-            color: #d4af37;
-            background: #1a1a1a;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #d4af37;
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
         
         h1 {
             font-size: 48px;
             margin-bottom: 10px;
+            margin-top: 20px;
             background: linear-gradient(135deg, #d4af37, #f0d968);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -194,7 +178,9 @@
 <body>
     <div class="container">
         <div class="logo-wrapper">
-            <div class="logo">47</div>
+            <div class="logo">
+                <img src="https://imgur.com/8Z8L8jX.png" alt="CARTEL47 Logo" />
+            </div>
         </div>
         
         <h1>CARTEL47</h1>
