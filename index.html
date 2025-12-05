@@ -3,105 +3,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CARTEL47 - Betting Platform</title>
+    <title>CARTEL47 - Premium Betting Platform</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
             color: #fff;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
+        
         .container {
             text-align: center;
             max-width: 600px;
-            padding: 40px;
+            animation: fadeIn 0.8s ease-in;
         }
-        h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            color: #e94560;
-            text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        p {
-            font-size: 1.2em;
+        
+        .logo-wrapper {
             margin-bottom: 30px;
-            opacity: 0.9;
+            animation: bounce 2s infinite;
         }
-        .status {
-            background: rgba(0,0,0,0.3);
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: radial-gradient(circle at 30% 30%, #f0d968, #d4af37);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.4), inset 0 2px 5px rgba(255,255,255,0.2);
+            font-size: 70px;
+            font-weight: bold;
+            color: #1a1a1a;
+            border: 3px solid #d4af37;
+            position: relative;
+        }
+        
+        .logo::before {
+            content: '♠';
+            position: absolute;
+            top: -10px;
+            font-size: 40px;
+            color: #d4af37;
+            background: #1a1a1a;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #d4af37;
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #d4af37, #f0d968);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .tagline {
+            font-size: 16px;
+            color: #d4af37;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        
+        .status-box {
+            background: rgba(212, 175, 55, 0.05);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
             padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #e94560;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            text-align: left;
         }
-        .status.success { border-left-color: #2ecc71; }
+        
+        .status-box .status-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d4af37;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .status-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #d4af37, #f0d968);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+        }
+        
+        .status-message {
+            color: #b0b0b0;
+            font-size: 14px;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
         button {
-            background: #e94560;
-            color: white;
+            background: linear-gradient(135deg, #d4af37, #f0d968);
+            color: #1a1a1a;
             border: none;
             padding: 12px 30px;
-            font-size: 1em;
-            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
             cursor: pointer;
-            margin: 10px;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
         }
-        button:hover { background: #c2354c; }
-        .loading { display: none; color: #e94560; }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #f0d968, #d4af37);
+        }
+        
+        button:active {
+            transform: translateY(-1px);
+        }
+        
+        .result {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #d4af37;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d4af37;
+            font-weight: 600;
+        }
+        
+        .result.success {
+            background: rgba(76, 175, 80, 0.1);
+            border-color: #4CAF50;
+            color: #4CAF50;
+        }
+        
+        .result.error {
+            background: rgba(244, 67, 54, 0.1);
+            border-color: #f44336;
+            color: #f44336;
+        }
+        
+        .result.hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>⚡ CARTEL47</h1>
-        <p>Betting Platform - LIVE</p>
-        
-        <div class="status" id="status">
-            <p>🔄 Checking backend connection...</p>
+        <div class="logo-wrapper">
+            <div class="logo">47</div>
         </div>
         
-        <button onclick="checkHealth()">Check Backend Health</button>
-        <button onclick="checkDatabase()">Check Database</button>
+        <h1>CARTEL47</h1>
+        <p class="tagline">PREMIUM BETTING PLATFORM</p>
         
-        <div class="loading" id="loading">Loading...</div>
+        <div class="status-box">
+            <div class="status-title">
+                <div class="status-icon"></div>
+                <span>System Status</span>
+            </div>
+            <div class="status-message" id="statusMsg">Initializing platform...</div>
+        </div>
+        
+        <div class="buttons">
+            <button onclick="checkHealth()">Check Backend Health</button>
+            <button onclick="checkDatabase()">Check Database</button>
+        </div>
+        
+        <div id="result" class="result hidden"></div>
     </div>
     
     <script>
         const API_URL = import.meta.env.VITE_API_URL || 'https://cartel47-api.railway.app';
         
         async function checkHealth() {
-            const status = document.getElementById('status');
-            document.getElementById('loading').style.display = 'block';
             try {
                 const response = await fetch(`${API_URL}/health`);
                 const data = await response.json();
-                status.innerHTML = `<p class="success">✅ Backend is alive!</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
-                status.classList.add('success');
-            } catch (e) {
-                status.innerHTML = `<p>❌ Error: ${e.message}</p>`;
+                showResult(`✓ Backend Health: ${data.status}`, 'success');
+                document.getElementById('statusMsg').textContent = 'Backend is responding';
+            } catch (error) {
+                showResult(`✗ Backend Error: ${error.message}`, 'error');
+                document.getElementById('statusMsg').textContent = 'Backend connection failed';
             }
-            document.getElementById('loading').style.display = 'none';
         }
         
         async function checkDatabase() {
-            const status = document.getElementById('status');
-            document.getElementById('loading').style.display = 'block';
             try {
                 const response = await fetch(`${API_URL}/api/status`);
                 const data = await response.json();
-                status.innerHTML = `<p class="success">✅ Database connected!</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
-                status.classList.add('success');
-            } catch (e) {
-                status.innerHTML = `<p>❌ Error: ${e.message}</p>`;
+                showResult(`✓ Database Connected: ${data.database}`, 'success');
+                document.getElementById('statusMsg').textContent = 'All systems operational';
+            } catch (error) {
+                showResult(`✗ Database Error: ${error.message}`, 'error');
+                document.getElementById('statusMsg').textContent = 'Database connection failed';
             }
-            document.getElementById('loading').style.display = 'none';
+        }
+        
+        function showResult(message, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = message;
+            resultDiv.className = `result ${type}`;
         }
         
         // Auto-check on load
-        window.addEventListener('load', checkHealth);
+        window.addEventListener('load', () => {
+            checkHealth();
+        });
     </script>
 </body>
 </html>
