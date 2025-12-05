@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARTEL47 - Betting Platform</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px;
+        }
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #e94560;
+            text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .status {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #e94560;
+        }
+        .status.success { border-left-color: #2ecc71; }
+        button {
+            background: #e94560;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        button:hover { background: #c2354c; }
+        .loading { display: none; color: #e94560; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ CARTEL47</h1>
+        <p>Betting Platform - LIVE</p>
+        
+        <div class="status" id="status">
+            <p>🔄 Checking backend connection...</p>
+        </div>
+        
+        <button onclick="checkHealth()">Check Backend Health</button>
+        <button onclick="checkDatabase()">Check Database</button>
+        
+        <div class="loading" id="loading">Loading...</div>
+    </div>
+    
+    <script>
+        const API_URL = import.meta.env.VITE_API_URL || 'https://cartel47-api.railway.app';
+        
+        async function checkHealth() {
+            const status = document.getElementById('status');
+            document.getElementById('loading').style.display = 'block';
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+                status.innerHTML = `<p class="success">✅ Backend is alive!</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                status.classList.add('success');
+            } catch (e) {
+                status.innerHTML = `<p>❌ Error: ${e.message}</p>`;
+            }
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        async function checkDatabase() {
+            const status = document.getElementById('status');
+            document.getElementById('loading').style.display = 'block';
+            try {
+                const response = await fetch(`${API_URL}/api/status`);
+                const data = await response.json();
+                status.innerHTML = `<p class="success">✅ Database connected!</p><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                status.classList.add('success');
+            } catch (e) {
+                status.innerHTML = `<p>❌ Error: ${e.message}</p>`;
+            }
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        // Auto-check on load
+        window.addEventListener('load', checkHealth);
+    </script>
+</body>
+</html>
